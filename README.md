@@ -123,12 +123,12 @@ A continuación se listan los 30 ejercicios. **Debe escribir el valor exacto de 
 
 | # | Ejercicio | Solución |
 |---|-----------|----------|
-| 01 | ¿Cuántas filas tienen el campo `id` con caracteres no numéricos? | `PENDIENTE` |
-| 02 | ¿Cuántas veces aparece el nombre "Maria" en el dataset? | `PENDIENTE` |
-| 03 | ¿Cuántas veces aparece el nombre "Juan" en el dataset? | `PENDIENTE` |
-| 04 | ¿Cuál es el nombre más frecuente y cuántas veces aparece? | `PENDIENTE` |
-| 05 | ¿Cuál es el apellido más frecuente y cuántas veces aparece? | `PENDIENTE` |
-| 06 | ¿Cuántos registros tienen la ciudad "Bogota" después de limpiar? | `PENDIENTE` |
+| 01 | ¿Cuántas filas tienen el campo `id` con caracteres no numéricos? | `83648` |
+| 02 | ¿Cuántas veces aparece el nombre "Maria" en el dataset? | `4160` |
+| 03 | ¿Cuántas veces aparece el nombre "Juan" en el dataset? | `3986` |
+| 04 | ¿Cuál es el nombre más frecuente y cuántas veces aparece? | `Tbamnyb(4221)` |
+| 05 | ¿Cuál es el apellido más frecuente y cuántas veces aparece? | `Eviren(7490)` |
+| 06 | ¿Cuántos registros tienen la ciudad "Bogota" después de limpiar? | `12062` |
 | 07 | ¿Cuántos registros tienen la ciudad "Medellin" después de limpiar? | `PENDIENTE` |
 | 08 | ¿Cuántas ciudades únicas existen después de normalizar? | `PENDIENTE` |
 | 09 | ¿Cuántos registros tienen la profesión "Ingeniero" después de limpiar? | `PENDIENTE` |
