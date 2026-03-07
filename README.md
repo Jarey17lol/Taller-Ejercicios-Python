@@ -131,9 +131,9 @@ A continuación se listan los 30 ejercicios. **Debe escribir el valor exacto de 
 | 06 | ¿Cuántos registros tienen la ciudad "Bogota" después de limpiar? | `14969` |
 | 07 | ¿Cuántos registros tienen la ciudad "Medellin" después de limpiar? | `15193` |
 | 08 | ¿Cuántas ciudades únicas existen después de normalizar? | `20` |
-| 09 | ¿Cuántos registros tienen la profesión "Ingeniero" después de limpiar? | `11899` |
-| 10 | ¿Cuántos registros tienen la profesión "Programador" después de limpiar? | `11875` |
-| 11 | ¿Cuántas profesiones únicas existen después de normalizar? | `44` |
+| 09 | ¿Cuántos registros tienen la profesión "Ingeniero" después de limpiar? | `12083` |
+| 10 | ¿Cuántos registros tienen la profesión "Programador" después de limpiar? | `12062` |
+| 11 | ¿Cuántas profesiones únicas existen después de normalizar? | `25` |
 | 12 | ¿Cuántos registros tienen el campo `email` con espacios adicionales? | `17959` |
 | 13 | ¿Cuántos registros tienen el campo `salario` con caracteres no numéricos? | `85266` |
 | 14 | ¿Cuál es el salario promedio después de limpiar? | `8,005,689.167` |
@@ -145,14 +145,14 @@ A continuación se listan los 30 ejercicios. **Debe escribir el valor exacto de 
 | 20 | ¿Cuántas personas nacieron entre 1990 y 2000 (inclusive)? | `53404` |
 | 21 | ¿Cuántas personas nacieron antes de 1960? | `66577` |
 | 22 | ¿Cuántas personas tienen más de 50 años (fecha actual: 2026-02-26)? | `140134` |
-| 23 | ¿Cuántos registros tienen nombre "Carlos" y viven en "Cali"? | `168 mal` |
-| 24 | ¿Cuántos registros tienen nombre "Ana" y son "Medico"? | `170 mal ` |
-| 25 | ¿Cuántos registros tienen profesión "Abogado" y salario > 10,000,000? | `4355 mal ` |
-| 26 | ¿Cuántos registros tienen ciudad "Barranquilla", activos y nacidos después de 1980? | `2830 mal ` |
-| 27 | ¿Cuál es la ciudad con más "Ingenieros"? | `PENDIENTE` |
-| 28 | ¿Cuál es la profesión con el salario promedio más alto? | `PENDIENTE` |
-| 29 | ¿Cuántos registros tienen email con dominio "gmail.com"? | `PENDIENTE` |
-| 30 | ¿Cuántos registros tienen nombre "Jose" y apellido "Garcia"? | `PENDIENTE` |
+| 23 | ¿Cuántos registros tienen nombre "Carlos" y viven en "Cali"? | `187` |
+| 24 | ¿Cuántos registros tienen nombre "Ana" y son "Medico"? | `172` |
+| 25 | ¿Cuántos registros tienen profesión "Abogado" y salario > 10,000,000? | `4405 ` |
+| 26 | ¿Cuántos registros tienen ciudad "Barranquilla", activos y nacidos después de 1980? | `3241` |
+| 27 | ¿Cuál es la ciudad con más "Ingenieros"? | `Popayan(640)` |
+| 28 | ¿Cuál es la profesión con el salario promedio más alto? | `Biologo (8,073,517)` |
+| 29 | ¿Cuántos registros tienen email con dominio "gmail.com"? | `120000` |
+| 30 | ¿Cuántos registros tienen nombre "Jose" y apellido "Garcia"? | `96` |
 
 ---
 
