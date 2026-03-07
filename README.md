@@ -126,29 +126,29 @@ A continuación se listan los 30 ejercicios. **Debe escribir el valor exacto de 
 | 01 | ¿Cuántas filas tienen el campo `id` con caracteres no numéricos? | `83648` |
 | 02 | ¿Cuántas veces aparece el nombre "Maria" en el dataset? | `4160` |
 | 03 | ¿Cuántas veces aparece el nombre "Juan" en el dataset? | `3986` |
-| 04 | ¿Cuál es el nombre más frecuente y cuántas veces aparece? | `Tbamnyb(4221)` |
-| 05 | ¿Cuál es el apellido más frecuente y cuántas veces aparece? | `Eviren(7490)` |
-| 06 | ¿Cuántos registros tienen la ciudad "Bogota" después de limpiar? | `14501` |
-| 07 | ¿Cuántos registros tienen la ciudad "Medellin" después de limpiar? | `14729` |
-| 08 | ¿Cuántas ciudades únicas existen después de normalizar? | `60` |
-| 09 | ¿Cuántos registros tienen la profesión "Ingeniero" después de limpiar? | `PENDIENTE` |
-| 10 | ¿Cuántos registros tienen la profesión "Programador" después de limpiar? | `PENDIENTE` |
-| 11 | ¿Cuántas profesiones únicas existen después de normalizar? | `PENDIENTE` |
-| 12 | ¿Cuántos registros tienen el campo `email` con espacios adicionales? | `27075` |
+| 04 | ¿Cuál es el nombre más frecuente y cuántas veces aparece? | `Gonzalo(4221)` |
+| 05 | ¿Cuál es el apellido más frecuente y cuántas veces aparece? | `Reyes(7490)` |
+| 06 | ¿Cuántos registros tienen la ciudad "Bogota" después de limpiar? | `14969` |
+| 07 | ¿Cuántos registros tienen la ciudad "Medellin" después de limpiar? | `15193` |
+| 08 | ¿Cuántas ciudades únicas existen después de normalizar? | `20` |
+| 09 | ¿Cuántos registros tienen la profesión "Ingeniero" después de limpiar? | `11899` |
+| 10 | ¿Cuántos registros tienen la profesión "Programador" después de limpiar? | `11875` |
+| 11 | ¿Cuántas profesiones únicas existen después de normalizar? | `44` |
+| 12 | ¿Cuántos registros tienen el campo `email` con espacios adicionales? | `17959` |
 | 13 | ¿Cuántos registros tienen el campo `salario` con caracteres no numéricos? | `85266` |
 | 14 | ¿Cuál es el salario promedio después de limpiar? | `8,005,689.167` |
 | 15 | ¿Cuál es el salario máximo después de limpiar? | `14,999,995`|
 | 16 | ¿Cuál es el salario mínimo después de limpiar? | `1,000,032` |
-| 17 | ¿Cuántos registros tienen `activo` como verdadero después de normalizar? | `PENDIENTE` |
-| 18 | ¿Cuántos registros tienen `activo` como falso después de normalizar? | `PENDIENTE` |
-| 19 | ¿Cuántos registros tienen fecha de nacimiento con formato diferente a YYYY-MM-DD? | `PENDIENTE` |
-| 20 | ¿Cuántas personas nacieron entre 1990 y 2000 (inclusive)? | `PENDIENTE` |
-| 21 | ¿Cuántas personas nacieron antes de 1960? | `PENDIENTE` |
-| 22 | ¿Cuántas personas tienen más de 50 años (fecha actual: 2026-02-26)? | `PENDIENTE` |
-| 23 | ¿Cuántos registros tienen nombre "Carlos" y viven en "Cali"? | `PENDIENTE` |
-| 24 | ¿Cuántos registros tienen nombre "Ana" y son "Medico"? | `PENDIENTE` |
-| 25 | ¿Cuántos registros tienen profesión "Abogado" y salario > 10,000,000? | `PENDIENTE` |
-| 26 | ¿Cuántos registros tienen ciudad "Barranquilla", activos y nacidos después de 1980? | `PENDIENTE` |
+| 17 | ¿Cuántos registros tienen `activo` como verdadero después de normalizar? | `149863` |
+| 18 | ¿Cuántos registros tienen `activo` como falso después de normalizar? | `150137` |
+| 19 | ¿Cuántos registros tienen fecha de nacimiento con formato diferente a YYYY-MM-DD? | `63000` |
+| 20 | ¿Cuántas personas nacieron entre 1990 y 2000 (inclusive)? | `53404` |
+| 21 | ¿Cuántas personas nacieron antes de 1960? | `66577` |
+| 22 | ¿Cuántas personas tienen más de 50 años (fecha actual: 2026-02-26)? | `140134` |
+| 23 | ¿Cuántos registros tienen nombre "Carlos" y viven en "Cali"? | `168 mal` |
+| 24 | ¿Cuántos registros tienen nombre "Ana" y son "Medico"? | `170 mal ` |
+| 25 | ¿Cuántos registros tienen profesión "Abogado" y salario > 10,000,000? | `4355 mal ` |
+| 26 | ¿Cuántos registros tienen ciudad "Barranquilla", activos y nacidos después de 1980? | `2830 mal ` |
 | 27 | ¿Cuál es la ciudad con más "Ingenieros"? | `PENDIENTE` |
 | 28 | ¿Cuál es la profesión con el salario promedio más alto? | `PENDIENTE` |
 | 29 | ¿Cuántos registros tienen email con dominio "gmail.com"? | `PENDIENTE` |
