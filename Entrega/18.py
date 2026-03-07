@@ -25,8 +25,8 @@ df["activo_bool"] = df["activo_str"].map({
     "n": False
 }).fillna(False)
 
-# contar registros con activo True
-cantidad_activo_true = df["activo_bool"].sum()
+# contar registros con activo False
+cantidad_activo_false = (~df["activo_bool"]).sum()
 
 # mostrar resultado en el formato deseado
-print(f"Cantidad de registros con activo=True: {cantidad_activo_true}")
+print(f"Cantidad de registros con activo=False: {cantidad_activo_false}")
