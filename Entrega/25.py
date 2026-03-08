@@ -1,10 +1,10 @@
 import pandas as pd
 import re
 
-# ── 1. Cargar dataset ──────────────────────────────────────────────
+# Cargar dataset 
 df = pd.read_csv("data/personas.csv")
 
-# ── 2. Limpiar profesion (filtro mejorado) ────────────────────────
+# Limpiar profesion
 def limpiar_profesion(texto):
     if pd.isna(texto):
         return texto
@@ -23,7 +23,7 @@ correcciones_residuales = {
 }
 df["profesion_limpia"] = df["profesion_limpia"].replace(correcciones_residuales)
 
-# ── 3. Limpiar salario ────────────────────────────────────────────
+# Limpiar salario
 df["salario_str"] = df["salario"].astype(str)
 
 reemplazos_salario = {
@@ -40,7 +40,7 @@ df["salario_str"] = df["salario_str"].str.replace(r',', '.', regex=True)
 df["salario_limpio"] = df["salario_str"].str.replace(r'[^0-9.]', '', regex=True)
 df["salario_limpio"] = pd.to_numeric(df["salario_limpio"], errors='coerce')
 
-# ── 4. Respuesta pregunta 25 ──────────────────────────────────────
+# Respuesta
 resultado = df[(df["profesion_limpia"] == "abogado") & (df["salario_limpio"] > 10000000)]
 
 print(f"¿Cuántos registros tienen profesión 'Abogado' y salario > 10,000,000?: {len(resultado)}")

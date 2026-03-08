@@ -1,10 +1,10 @@
 import pandas as pd
 import re
 
-# ── 1. Cargar dataset ──────────────────────────────────────────────
+# Cargar dataset 
 df = pd.read_csv("data/personas.csv")
 
-# ── 2. Limpiar profesion (filtro mejorado) ────────────────────────
+# Limpiar profesion
 def limpiar_profesion(texto):
     if pd.isna(texto):
         return texto
@@ -23,7 +23,7 @@ correcciones_residuales = {
 }
 df["profesion_limpia"] = df["profesion_limpia"].replace(correcciones_residuales)
 
-# ── 3. Respuesta pregunta 11 ──────────────────────────────────────
+# Respuesta
 cantidad_unicas = df["profesion_limpia"].nunique()
 
 print(f"¿Cuántas profesiones únicas existen después de normalizar?:{cantidad_unicas}")

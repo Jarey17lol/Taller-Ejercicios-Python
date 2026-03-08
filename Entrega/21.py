@@ -4,7 +4,7 @@ import re
 # cargar dataset
 df = pd.read_csv("data/personas.csv")
 
-# función de limpieza final
+# funcion limpieza
 def limpiar_fecha(fecha):
     if pd.isna(fecha):
         return None
@@ -31,5 +31,5 @@ mask = df["fecha_nacimiento_dt"] < limite
 # contar registros
 cantidad_antes_1960 = mask.sum()
 
-# mostrar resultado
+# resultado
 print(f"Cantidad de personas nacidas antes de 1960: {cantidad_antes_1960}")

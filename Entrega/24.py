@@ -2,10 +2,10 @@ import pandas as pd
 import codecs
 import re
 
-# ── 1. Cargar dataset ──────────────────────────────────────────────
+# Cargar dataset 
 df = pd.read_csv("data/personas.csv")
 
-# ── 2. Limpiar profesion (filtro mejorado) ────────────────────────
+# Limpiar profesion 
 def limpiar_profesion(texto):
     if pd.isna(texto):
         return texto
@@ -24,7 +24,7 @@ correcciones_residuales = {
 }
 df["profesion_limpia"] = df["profesion_limpia"].replace(correcciones_residuales)
 
-# ── 3. Descifrar nombres con ROT13 ────────────────────────────────
+# Descifrar nombres 
 def limpiar_y_descifrar(texto):
     if pd.isna(texto):
         return texto
@@ -35,7 +35,7 @@ def limpiar_y_descifrar(texto):
 
 df["nombre"] = df["nombre_cifrado"].apply(limpiar_y_descifrar)
 
-# ── 4. Respuesta pregunta 24 ──────────────────────────────────────
+# Respuesta
 resultado = df[(df["nombre"] == "Ana") & (df["profesion_limpia"] == "medico")]
 
 print(f"¿Cuántos registros tienen nombre 'Ana' y son 'Medico'?: {len(resultado)}")

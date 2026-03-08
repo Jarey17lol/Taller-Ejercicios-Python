@@ -20,14 +20,14 @@ for old, new in reemplazos.items():
 # reemplazar comas por puntos
 df["salario_str"] = df["salario_str"].str.replace(r',', '.', regex=True)
 
-# eliminar cualquier carácter que no sea dígito o punto
+# eliminar cualquier caracter que no sea digito o punto
 df["salario_limpio"] = df["salario_str"].str.replace(r'[^0-9.]', '', regex=True)
 
 # convertir a float
 df["salario_limpio"] = df["salario_limpio"].astype(float)
 
-# calcular salario mínimo
+# calcular salario minimo
 salario_minimo = df["salario_limpio"].min()
 
-# mostrar solo el resultado
+# resultado
 print(round(salario_minimo, 0))

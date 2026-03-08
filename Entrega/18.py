@@ -8,7 +8,7 @@ df = pd.read_csv("data/personas.csv")
 df["activo_str"] = df["activo"].astype(str).str.strip()
 df["activo_str"] = df["activo_str"].str.replace(r'[^a-zA-Z0-9áéíóúñ]', '', regex=True)
 
-# normalizar a minúsculas
+# normalizar a minusculas
 df["activo_str"] = df["activo_str"].str.lower()
 
 # mapear valores conocidos a booleano
@@ -28,5 +28,5 @@ df["activo_bool"] = df["activo_str"].map({
 # contar registros con activo False
 cantidad_activo_false = (~df["activo_bool"]).sum()
 
-# mostrar resultado en el formato deseado
+# resultado
 print(f"Cantidad de registros con activo=False: {cantidad_activo_false}")

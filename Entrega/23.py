@@ -2,10 +2,10 @@ import pandas as pd
 import codecs
 import re
 
-# ── 1. Cargar dataset ──────────────────────────────────────────────
+# Cargar dataset 
 df = pd.read_csv("data/personas.csv")
 
-# ── 2. Limpiar y corregir ciudades ────────────────────────────────
+# Limpiar y corregir ciudades
 correcciones_ciudades = {
     "S@nt@ M@rt@": "Santa Marta", "V@ll3dup@r": "Valledupar",
     "M@niz@l3s": "Manizales", "Sinc3l3jo": "Sincelejo",
@@ -24,7 +24,7 @@ df["ciudad"] = df["ciudad"].replace(correcciones_ciudades)
 df["ciudad"] = df["ciudad"].str.replace(r'[@%#()\[\]!_*]', '', regex=True)
 df["ciudad"] = df["ciudad"].str.strip().str.title()
 
-# ── 3. Descifrar nombres con ROT13 ────────────────────────────────
+# Descifrar nombres  
 def limpiar_y_descifrar(texto):
     if pd.isna(texto):
         return texto
@@ -35,6 +35,6 @@ def limpiar_y_descifrar(texto):
 
 df["nombre"] = df["nombre_cifrado"].apply(limpiar_y_descifrar)
 
-# ── 4. Respuesta pregunta 23 ──────────────────────────────────────
+# Respuesta
 resultado = df[(df["nombre"] == "Carlos") & (df["ciudad"] == "Cali")]
 print(f"¿Cuántos registros tienen nombre Carlos y viven en Cali?: {len(resultado)}")

@@ -10,7 +10,7 @@ df["nombre"] = df["nombre_cifrado"].apply(lambda x: codecs.decode(str(x), 'rot_1
 # limpiar y normalizar
 df["nombre"] = df["nombre"].str.strip().str.title()
 
-# obtener nombre más frecuente
+# obtener nombre mas frecuente
 nombre_mas_frecuente = df["nombre"].value_counts().idxmax()
 cantidad = df["nombre"].value_counts().max()
 

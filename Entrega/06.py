@@ -4,7 +4,7 @@ import re
 # cargar dataset
 df = pd.read_csv("data/personas.csv")
 
-# correcciones específicas encontradas
+# correcciones especificas
 correcciones_ciudades = {
     "S@nt@ M@rt@": "Santa Marta",
     "V@ll3dup@r": "Valledupar",
@@ -28,7 +28,7 @@ correcciones_ciudades = {
     "P@sto": "Pasto"
 }
 
-# corregir ciudades corruptas
+# corregir ciudades 
 df["ciudad"] = df["ciudad"].replace(correcciones_ciudades)
 
 # limpiar caracteres especiales
@@ -37,7 +37,7 @@ df["ciudad"] = df["ciudad"].str.replace(r'[@%#()\[\]!_*]', '', regex=True)
 # normalizar texto
 df["ciudad"] = df["ciudad"].str.strip().str.title()
 
-# contar registros con Bogota
+# contar registros Bogota
 cantidad_bogota = (df["ciudad"] == "Bogota").sum()
 
 print("Registros con ciudad Bogota después de limpiar:", cantidad_bogota)

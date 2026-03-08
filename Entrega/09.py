@@ -1,10 +1,10 @@
 import pandas as pd
 import re
 
-# ── 1. Cargar dataset ──────────────────────────────────────────────
+# Cargar dataset
 df = pd.read_csv("data/personas.csv")
 
-# ── 2. Limpiar profesion (filtro mejorado) ────────────────────────
+# Limpiar profesion 
 def limpiar_profesion(texto):
     if pd.isna(texto):
         return texto
@@ -23,7 +23,7 @@ correcciones_residuales = {
 }
 df["profesion_limpia"] = df["profesion_limpia"].replace(correcciones_residuales)
 
-# ── 3. Respuesta pregunta 09 ──────────────────────────────────────
+# Respuesta
 cantidad_ingenieros = (df["profesion_limpia"] == "ingeniero").sum()
 
 print(f"¿Cuántos registros tienen la profesión 'Ingeniero' después de limpiar?:{cantidad_ingenieros}")

@@ -5,7 +5,7 @@ import re
 # cargar dataset
 df = pd.read_csv("data/personas.csv")
 
-# función de limpieza final para fechas
+# función limpieza para fechas
 def limpiar_fecha(fecha):
     if pd.isna(fecha):
         return None
@@ -31,8 +31,8 @@ fecha_actual = pd.Timestamp('2026-02-26')
 # calcular edad
 df["edad"] = (fecha_actual - df["fecha_nacimiento_dt"]).dt.days // 365
 
-# contar personas con más de 50 años
+# contar personas con mas de 50 años
 cantidad_mas_50 = (df["edad"] > 50).sum()
 
-# mostrar resultado
+# resultado
 print(f"Cantidad de personas con más de 50 años: {cantidad_mas_50}")

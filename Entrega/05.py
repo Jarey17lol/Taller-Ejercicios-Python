@@ -10,7 +10,7 @@ df["apellido"] = df["apellido_cifrado"].apply(lambda x: codecs.decode(str(x), 'r
 # limpiar datos
 df["apellido"] = df["apellido"].str.strip().str.title()
 
-# encontrar el apellido más frecuente
+# encontrar el apellido mas frecuente
 apellido_mas_frecuente = df["apellido"].value_counts().idxmax()
 cantidad = df["apellido"].value_counts().max()
 

@@ -2,10 +2,10 @@ import pandas as pd
 import codecs
 import re
 
-# ── 1. Cargar dataset ──────────────────────────────────────────────
+# Cargar dataset
 df = pd.read_csv("data/personas.csv")
 
-# ── 2. Limpiar y corregir ciudades ────────────────────────────────
+# Limpiar y corregir ciudades 
 correcciones_ciudades = {
     "S@nt@ M@rt@": "Santa Marta", "V@ll3dup@r": "Valledupar",
     "M@niz@l3s": "Manizales", "Sinc3l3jo": "Sincelejo",
@@ -24,7 +24,7 @@ df["ciudad"] = df["ciudad"].replace(correcciones_ciudades)
 df["ciudad"] = df["ciudad"].str.replace(r'[@%#()\[\]!_*]', '', regex=True)
 df["ciudad"] = df["ciudad"].str.strip().str.title()
 
-# ── 3. Limpiar columna activo ─────────────────────────────────────
+# Limpiar columna activo 
 df["activo_str"] = df["activo"].astype(str).str.strip()
 df["activo_str"] = df["activo_str"].str.replace(r'[^a-zA-Z0-9áéíóúñ]', '', regex=True)
 df["activo_str"] = df["activo_str"].str.lower()
@@ -35,7 +35,7 @@ df["activo_bool"] = df["activo_str"].map({
     "false": False, "0": False, "no": False, "n": False
 }).fillna(False)
 
-# ── 4. Limpiar fecha de nacimiento ────────────────────────────────
+# Limpiar fecha de nacimiento
 def limpiar_fecha(fecha):
     if pd.isna(fecha):
         return None
@@ -52,7 +52,7 @@ def limpiar_fecha(fecha):
 df["fecha_nacimiento_limpia"] = df["fecha_nacimiento"].apply(limpiar_fecha)
 df["fecha_nacimiento_dt"] = pd.to_datetime(df["fecha_nacimiento_limpia"], errors='coerce')
 
-# ── 5. Respuesta pregunta 26 ──────────────────────────────────────
+# Respuesta
 limite = pd.Timestamp('1980-12-31')
 
 resultado = df[

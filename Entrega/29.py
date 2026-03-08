@@ -1,10 +1,10 @@
 import pandas as pd
 import re
 
-# ── 1. Cargar dataset ──────────────────────────────────────────────
+# Cargar dataset 
 df = pd.read_csv("data/personas.csv")
 
-# ── 2. Limpiar email ──────────────────────────────────────────────
+# Limpiar email 
 def limpiar_email(texto):
     if pd.isna(texto):
         return texto
@@ -19,7 +19,7 @@ def limpiar_email(texto):
 
 df["email_limpio"] = df["email"].apply(limpiar_email)
 
-# ── 3. Respuesta pregunta 29 ──────────────────────────────────────
+# Respuesta
 cantidad = df["email_limpio"].str.endswith("@gmail.com").sum()
 
 print(f"¿Cuántos registros tienen email con dominio 'gmail.com'?: {cantidad}")

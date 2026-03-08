@@ -4,7 +4,7 @@ import re
 # cargar dataset
 df = pd.read_csv("data/personas.csv")
 
-# función de limpieza final
+# funcion limpieza 
 def limpiar_fecha(fecha):
     if pd.isna(fecha):
         return None
@@ -24,7 +24,7 @@ df["fecha_nacimiento_limpia"] = df["fecha_nacimiento"].apply(limpiar_fecha)
 # convertir a datetime, ignorando errores
 df["fecha_nacimiento_dt"] = pd.to_datetime(df["fecha_nacimiento_limpia"], errors='coerce')
 
-# filtrar fechas entre 1990 y 2000 inclusive
+# filtrar fechas entre 1990 y 2000 
 inicio = pd.Timestamp('1990-01-01')
 fin = pd.Timestamp('2000-12-31')
 mask = (df["fecha_nacimiento_dt"] >= inicio) & (df["fecha_nacimiento_dt"] <= fin)
@@ -32,5 +32,5 @@ mask = (df["fecha_nacimiento_dt"] >= inicio) & (df["fecha_nacimiento_dt"] <= fin
 # contar registros
 cantidad_1990_2000 = mask.sum()
 
-# mostrar solo el resultado
+# resultado
 print(f"Cantidad de personas nacidas entre 1990 y 2000 (inclusive): {cantidad_1990_2000}")

@@ -28,16 +28,16 @@ correcciones_ciudades = {
     "P@sto": "Pasto"
 }
 
-# corregir ciudades corruptas
+# corregir ciudades
 df["ciudad"] = df["ciudad"].replace(correcciones_ciudades)
 
 # limpiar caracteres especiales
 df["ciudad"] = df["ciudad"].str.replace(r'[@%#()\[\]!_*]', '', regex=True)
 
-# normalizar texto
+# normalizar
 df["ciudad"] = df["ciudad"].str.strip().str.title()
 
-# contar ciudades únicas
+# ciudades unicas
 ciudades_unicas = df["ciudad"].nunique()
 
-print("Cantidad de ciudades únicas después de normalizar:", ciudades_unicas)
+print("Cantidad de ciudades unicas después de normalizar:", ciudades_unicas)

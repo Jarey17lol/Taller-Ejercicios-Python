@@ -1,10 +1,10 @@
 import pandas as pd
 import re
 
-# ── 1. Cargar dataset ──────────────────────────────────────────────
+# Cargar dataset
 df = pd.read_csv("data/personas.csv")
 
-# ── 2. Limpiar y corregir ciudades ────────────────────────────────
+# Limpiar y corregir ciudades
 correcciones_ciudades = {
     "S@nt@ M@rt@": "Santa Marta", "V@ll3dup@r": "Valledupar",
     "M@niz@l3s": "Manizales", "Sinc3l3jo": "Sincelejo",
@@ -23,7 +23,7 @@ df["ciudad"] = df["ciudad"].replace(correcciones_ciudades)
 df["ciudad"] = df["ciudad"].str.replace(r'[@%#()\[\]!_*]', '', regex=True)
 df["ciudad"] = df["ciudad"].str.strip().str.title()
 
-# ── 3. Limpiar profesion (filtro mejorado) ────────────────────────
+# Limpiar profesion 
 def limpiar_profesion(texto):
     if pd.isna(texto):
         return texto
@@ -42,7 +42,7 @@ correcciones_residuales = {
 }
 df["profesion_limpia"] = df["profesion_limpia"].replace(correcciones_residuales)
 
-# ── 4. Respuesta pregunta 27 ──────────────────────────────────────
+# Respuesta 
 ingenieros = df[df["profesion_limpia"] == "ingeniero"]
 ciudad_top = ingenieros["ciudad"].value_counts().idxmax()
 cantidad = ingenieros["ciudad"].value_counts().max()
