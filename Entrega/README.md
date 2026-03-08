@@ -1,7 +1,5 @@
 # Taller de Python - Manejo y Limpieza de Datos
 
-Taller de Limpieza y Análisis de Datos — personas.csv
-
 Descripción del Dataset
 
 El proyecto consiste en el análisis y limpieza de un conjunto de datos contenido en el archivo data/personas.csv. El dataset contiene información de personas y fue diseñado intencionalmente con errores y datos corruptos para practicar técnicas de limpieza y procesamiento de datos utilizando Python.
