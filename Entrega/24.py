@@ -2,27 +2,40 @@ import pandas as pd
 import codecs
 import re
 
-# cargar dataset
+# ── 1. Cargar dataset ──────────────────────────────────────────────
 df = pd.read_csv("data/personas.csv")
 
-# Función para limpiar texto: elimina caracteres especiales y espacios extra, devuelve en minúsculas
-def limpiar_texto(texto):
-    texto = str(texto).strip()                       # quitar espacios
-    texto = re.sub(r'[^a-zA-Záéíóúñ ]', '', texto)  # eliminar caracteres especiales
-    texto = texto.lower()                            # pasar a minúsculas
-    return texto
+# ── 2. Limpiar profesion (filtro mejorado) ────────────────────────
+def limpiar_profesion(texto):
+    if pd.isna(texto):
+        return texto
+    texto = str(texto).strip()
+    texto = re.sub(r'(?<=[a-zA-Z])3(?=[a-zA-Z])', 'e', texto)
+    texto = re.sub(r'(?<=[a-zA-Z])@(?=[a-zA-Z])', 'a', texto)
+    texto = re.sub(r'[^a-zA-ZáéíóúñÁÉÍÓÚÑ\s]', '', texto)
+    return texto.strip().lower()
 
-# Decodificar y limpiar nombres
-df["nombre"] = df["nombre_cifrado"].apply(lambda x: limpiar_texto(codecs.decode(str(x), 'rot_13')))
+df["profesion_limpia"] = df["profesion"].apply(limpiar_profesion)
 
-# Limpiar profesiones
-df["profesion"] = df["profesion"].apply(limpiar_texto)
+correcciones_residuales = {
+    "electricist": "electricista",
+    "periodist":   "periodista",
+    "economist":   "economista"
+}
+df["profesion_limpia"] = df["profesion_limpia"].replace(correcciones_residuales)
 
-# Filtrar registros con nombre "ana" y profesión "medico"
-mask = (df["nombre"] == "ana") & (df["profesion"] == "medico")
+# ── 3. Descifrar nombres con ROT13 ────────────────────────────────
+def limpiar_y_descifrar(texto):
+    if pd.isna(texto):
+        return texto
+    texto = re.sub(r'[@%#()\[\]!_*]', '', str(texto))
+    texto = texto.strip()
+    texto = codecs.decode(texto, 'rot_13')
+    return texto.strip().title()
 
-# Contar registros
-cantidad_ana_medico = mask.sum()
+df["nombre"] = df["nombre_cifrado"].apply(limpiar_y_descifrar)
 
-# Mostrar resultado
-print(f"Cantidad de registros con nombre 'Ana' y profesión 'Medico': {cantidad_ana_medico}")
+# ── 4. Respuesta pregunta 24 ──────────────────────────────────────
+resultado = df[(df["nombre"] == "Ana") & (df["profesion_limpia"] == "medico")]
+
+print(f"¿Cuántos registros tienen nombre 'Ana' y son 'Medico'?: {len(resultado)}")

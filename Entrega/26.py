@@ -2,32 +2,43 @@ import pandas as pd
 import codecs
 import re
 
-# cargar dataset
+# ── 1. Cargar dataset ──────────────────────────────────────────────
 df = pd.read_csv("data/personas.csv")
 
-# --- Funciones de limpieza ---
+# ── 2. Limpiar y corregir ciudades ────────────────────────────────
+correcciones_ciudades = {
+    "S@nt@ M@rt@": "Santa Marta", "V@ll3dup@r": "Valledupar",
+    "M@niz@l3s": "Manizales", "Sinc3l3jo": "Sincelejo",
+    "Buc@r@m@ng@": "Bucaramanga", "Tunj@": "Tunja",
+    "Ib@gu3": "Ibague", "C@rt@g3n@": "Cartagena",
+    "Arm3ni@": "Armenia", "M3d3llin": "Medellin",
+    "Cucut@": "Cucuta", "C@li": "Cali",
+    "P3r3ir@": "Pereira", "Mont3ri@": "Monteria",
+    "Bogot@": "Bogota", "Vill@vic3ncio": "Villavicencio",
+    "N3iv@": "Neiva", "Pop@y@n": "Popayan",
+    "B@rr@nquill@": "Barranquilla", "P@sto": "Pasto"
+}
 
-# Ciudad: eliminar caracteres especiales y normalizar
-def limpiar_texto(texto):
-    texto = str(texto).strip()
-    texto = re.sub(r'[^a-zA-Záéíóúñ ]', '', texto)
-    return texto.lower()
+df["ciudad"] = df["ciudad"].str.strip()
+df["ciudad"] = df["ciudad"].replace(correcciones_ciudades)
+df["ciudad"] = df["ciudad"].str.replace(r'[@%#()\[\]!_*]', '', regex=True)
+df["ciudad"] = df["ciudad"].str.strip().str.title()
 
-df["ciudad"] = df["ciudad"].apply(limpiar_texto)
+# ── 3. Limpiar columna activo ─────────────────────────────────────
+df["activo_str"] = df["activo"].astype(str).str.strip()
+df["activo_str"] = df["activo_str"].str.replace(r'[^a-zA-Z0-9áéíóúñ]', '', regex=True)
+df["activo_str"] = df["activo_str"].str.lower()
 
-# Activo: normalizar a booleano
-def limpiar_activo(valor):
-    valor = str(valor).strip().lower()
-    if valor in ["true", "yes", "1"]:
-        return True
-    return False
+df["activo_bool"] = df["activo_str"].map({
+    "true": True,  "1": True,  "si": True,
+    "sí": True,    "s": True,  "yes": True,
+    "false": False, "0": False, "no": False, "n": False
+}).fillna(False)
 
-df["activo_bool"] = df["activo"].apply(limpiar_activo)
-
-# Fecha de nacimiento: limpieza robusta
+# ── 4. Limpiar fecha de nacimiento ────────────────────────────────
 def limpiar_fecha(fecha):
     if pd.isna(fecha):
-        return pd.NaT
+        return None
     fecha = str(fecha).strip()
     fecha = re.sub(r'[^0-9\-/. ]', '', fecha)
     fecha = re.sub(r'[ /.]', '-', fecha)
@@ -36,21 +47,19 @@ def limpiar_fecha(fecha):
     if match:
         y, m, d = match.groups()
         fecha = f"{y}-{int(m):02d}-{int(d):02d}"
-    try:
-        return pd.to_datetime(fecha, errors='coerce')
-    except:
-        return pd.NaT
+    return fecha
 
-df["fecha_nacimiento_dt"] = df["fecha_nacimiento"].apply(limpiar_fecha)
+df["fecha_nacimiento_limpia"] = df["fecha_nacimiento"].apply(limpiar_fecha)
+df["fecha_nacimiento_dt"] = pd.to_datetime(df["fecha_nacimiento_limpia"], errors='coerce')
 
-# --- Filtrado ---
-mask = (
-    (df["ciudad"] == "barranquilla") &
+# ── 5. Respuesta pregunta 26 ──────────────────────────────────────
+limite = pd.Timestamp('1980-12-31')
+
+resultado = df[
+    (df["ciudad"] == "Barranquilla") &
     (df["activo_bool"] == True) &
-    (df["fecha_nacimiento_dt"] > pd.Timestamp('1980-12-31'))
-)
+    (df["fecha_nacimiento_dt"] > limite)
+]
 
-cantidad_bq_activo_post1980 = mask.sum()
+print(f"¿Cuántos registros tienen ciudad 'Barranquilla', activos y nacidos después de 1980?:{len(resultado)}")
 
-# Resultado
-print(f"Cantidad de registros con ciudad 'Barranquilla', activos y nacidos después de 1980: {cantidad_bq_activo_post1980}")

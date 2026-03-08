@@ -1,33 +1,46 @@
 import pandas as pd
 import re
 
-# cargar dataset
+# ── 1. Cargar dataset ──────────────────────────────────────────────
 df = pd.read_csv("data/personas.csv")
 
-# Función para limpiar profesiones (manteniendo coherencia con limpieza previa)
-def limpiar_texto(texto):
+# ── 2. Limpiar profesion (filtro mejorado) ────────────────────────
+def limpiar_profesion(texto):
+    if pd.isna(texto):
+        return texto
     texto = str(texto).strip()
-    texto = re.sub(r'[^a-zA-Záéíóúñ ]', '', texto)  # eliminar caracteres especiales
-    return texto.lower()
+    texto = re.sub(r'(?<=[a-zA-Z])3(?=[a-zA-Z])', 'e', texto)
+    texto = re.sub(r'(?<=[a-zA-Z])@(?=[a-zA-Z])', 'a', texto)
+    texto = re.sub(r'[^a-zA-ZáéíóúñÁÉÍÓÚÑ\s]', '', texto)
+    return texto.strip().lower()
 
-df["profesion"] = df["profesion"].apply(limpiar_texto)
+df["profesion_limpia"] = df["profesion"].apply(limpiar_profesion)
 
-# Función para limpiar salarios de manera robusta
-def limpiar_salario(sal):
-    if pd.isna(sal):
-        return 0
-    sal = str(sal).lower().strip()
-    # eliminar todos los caracteres no numéricos y palabras como 'aprox'
-    sal = re.sub(r'[^0-9]', '', sal)
-    return int(sal) if sal.isdigit() else 0
+correcciones_residuales = {
+    "electricist": "electricista",
+    "periodist":   "periodista",
+    "economist":   "economista"
+}
+df["profesion_limpia"] = df["profesion_limpia"].replace(correcciones_residuales)
 
-df["salario_limpio"] = df["salario"].apply(limpiar_salario)
+# ── 3. Limpiar salario ────────────────────────────────────────────
+df["salario_str"] = df["salario"].astype(str)
 
-# Filtrar registros con profesión "abogado" y salario > 10,000,000
-mask = (df["profesion"] == "abogado") & (df["salario_limpio"] > 10000000)
+reemplazos_salario = {
+    "l": "1",
+    "O": "0",
+    "e": "3",
+    "aprox.": ""
+}
 
-# Contar registros
-cantidad_abogado_altosalario = mask.sum()
+for old, new in reemplazos_salario.items():
+    df["salario_str"] = df["salario_str"].str.replace(old, new, regex=False)
 
-# Mostrar resultado
-print(f"Cantidad de registros con profesión 'Abogado' y salario > 10,000,000: {cantidad_abogado_altosalario}")
+df["salario_str"] = df["salario_str"].str.replace(r',', '.', regex=True)
+df["salario_limpio"] = df["salario_str"].str.replace(r'[^0-9.]', '', regex=True)
+df["salario_limpio"] = pd.to_numeric(df["salario_limpio"], errors='coerce')
+
+# ── 4. Respuesta pregunta 25 ──────────────────────────────────────
+resultado = df[(df["profesion_limpia"] == "abogado") & (df["salario_limpio"] > 10000000)]
+
+print(f"¿Cuántos registros tienen profesión 'Abogado' y salario > 10,000,000?: {len(resultado)}")
